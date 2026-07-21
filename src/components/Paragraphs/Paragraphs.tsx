@@ -1,5 +1,5 @@
 import { useStyleDefaults } from '../../context/StyleDefaults'
-import { mergeStyle, splitLines, textStyleToCss } from '../../lib/style'
+import { mergeStyle, preventWidow, splitLines, textStyleToCss } from '../../lib/style'
 import type { ParagraphItem, TextStyle } from '../../types/content'
 import styles from './Paragraphs.module.css'
 
@@ -39,9 +39,11 @@ export function Paragraphs({
 
         return (
           <p key={i} className={styles.paragraph} style={own ? textStyleToCss(resolved) : undefined}>
-            {splitLines(text, preserve).map((line, j) => (
+            {splitLines(text, preserve).map((line, j, all) => (
               <span key={j} className={lineClass}>
-                {line}
+                {/* Chỉ khoá chữ cuối của đoạn — khoá mọi dòng sẽ tạo ra nhiều
+                    cụm không tách được và làm ngắt dòng xấu đi. */}
+                {j === all.length - 1 ? preventWidow(line) : line}
               </span>
             ))}
           </p>

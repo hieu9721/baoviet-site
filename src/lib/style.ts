@@ -156,6 +156,22 @@ export function sectionStyleToCss(style?: SectionStyle): StyleWithVars {
   return clean(css)
 }
 
+/** Khoảng trắng không ngắt dòng (U+00A0), viết bằng mã để nhìn thấy được. */
+const NBSP = String.fromCharCode(0xa0)
+
+/**
+ * Nối hai chữ cuối bằng NBSP để dòng cuối không bao giờ trơ lại một chữ.
+ * Cần thiết vì `text-wrap: balance` bị Chrome bỏ qua với khối trên 6 dòng,
+ * và trình duyệt cũ thì chưa hỗ trợ thuộc tính này.
+ */
+export function preventWidow(text: string): string {
+  const trimmed = text.trimEnd()
+  const lastSpace = trimmed.lastIndexOf(' ')
+  // Chỉ có một chữ thì không cần nối.
+  if (lastSpace <= 0) return text
+  return trimmed.slice(0, lastSpace) + NBSP + trimmed.slice(lastSpace + 1)
+}
+
 /**
  * Tách chuỗi nhiều dòng thành từng dòng đã cắt khoảng trắng thừa.
  * Cần thiết vì template literal trong config thường có thụt lề.

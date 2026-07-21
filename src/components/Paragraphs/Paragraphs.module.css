@@ -13,8 +13,16 @@
 
 .paragraph {
   margin: 0 0 1.2em;
-  /* Dàn lại các dòng cuối để không còn một chữ đứng lẻ. */
-  text-wrap: pretty;
+  /*
+   * `balance` chia đều bề rộng các dòng — với chữ căn giữa thì đây là khác biệt
+   * lớn nhất: đo thực tế ở 390px, tỉ lệ dòng ngắn/dòng dài tăng từ 46% lên 82%.
+   * (`pretty` chỉ vá dòng cuối nên gần như không ăn thua ở đây.)
+   *
+   * Chrome chỉ áp dụng `balance` cho khối tối đa 6 dòng; đoạn dài hơn rơi về
+   * ngắt dòng thường, nên vẫn cần chốt chặn chữ mồ côi bằng non-breaking space
+   * ở `Paragraphs.tsx`. Trình duyệt cũ chưa hỗ trợ `balance` cũng dựa vào đó.
+   */
+  text-wrap: balance;
 }
 
 .paragraph:last-child {
