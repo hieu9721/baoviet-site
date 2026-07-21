@@ -276,7 +276,7 @@ export const siteConfig: SiteConfig = {
           // Nút nổi đè lên đáy ảnh, đúng như design.
           action: {
             type: "link",
-            url: "https://bibpix.net/Anh-Sao-hop-luc-ban-cheo-2025",
+            url: "https://bibpix.net/Anh-So-ket-2026",
           },
           style: { ...noteStyle, margin: "16px 0" },
         },
