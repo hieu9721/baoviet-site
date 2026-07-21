@@ -79,3 +79,159 @@
   font-style: normal;
   font-display: swap;
 }
+
+/* ------------------------------------------------------------------ *
+ * Helvetica Neue chuẩn — bộ đầy đủ trong public/fonts/helvetica-neue-5/
+ * Đây là font thiết kế dùng cho phần chữ đoạn văn (Neue Italic / Bold Italic).
+ *
+ * Khai báo hai chiều:
+ *  1) Một họ chung 'HelveticaNeue' với đủ độ đậm + nghiêng — dùng khi điều
+ *     khiển bằng font-weight (vd chữ body).
+ *  2) Vài họ tên riêng ('HelveticaNeue-Italic', '-BoldItalic', '-Bold', '-Black')
+ *     để config chọn thẳng một face nghiêng/đậm chỉ qua font-family (TextStyle
+ *     không có trường font-style).
+ * ------------------------------------------------------------------ */
+
+/* --- Họ chung 'HelveticaNeue' theo font-weight + font-style --- */
+@font-face {
+  font-family: 'HelveticaNeue';
+  src: url('/fonts/helvetica-neue-5/HelveticaNeueThin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'HelveticaNeue';
+  src: url('/fonts/helvetica-neue-5/HelveticaNeueThinItalic.otf') format('opentype');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'HelveticaNeue';
+  src: url('/fonts/helvetica-neue-5/HelveticaNeueUltraLight.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'HelveticaNeue';
+  src: url('/fonts/helvetica-neue-5/HelveticaNeueUltraLightItalic.otf') format('opentype');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'HelveticaNeue';
+  src: url('/fonts/helvetica-neue-5/HelveticaNeueLight.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'HelveticaNeue';
+  src: url('/fonts/helvetica-neue-5/HelveticaNeueLightItalic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'HelveticaNeue';
+  src: url('/fonts/helvetica-neue-5/HelveticaNeueRoman.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'HelveticaNeue';
+  src: url('/fonts/helvetica-neue-5/HelveticaNeueItalic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'HelveticaNeue';
+  src: url('/fonts/helvetica-neue-5/HelveticaNeueMedium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'HelveticaNeue';
+  src: url('/fonts/helvetica-neue-5/HelveticaNeueMediumItalic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'HelveticaNeue';
+  src: url('/fonts/helvetica-neue-5/HelveticaNeueBold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'HelveticaNeue';
+  src: url('/fonts/helvetica-neue-5/HelveticaNeueBoldItalic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'HelveticaNeue';
+  src: url('/fonts/helvetica-neue-5/HelveticaNeueHeavy.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'HelveticaNeue';
+  src: url('/fonts/helvetica-neue-5/HelveticaNeueHeavyItalic.otf') format('opentype');
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'HelveticaNeue';
+  src: url('/fonts/helvetica-neue-5/HelveticaNeueBlack.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'HelveticaNeue';
+  src: url('/fonts/helvetica-neue-5/HelveticaNeueBlackItalic.otf') format('opentype');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* --- Họ tên riêng cho từng face (chọn thẳng qua font-family trong config) --- */
+@font-face {
+  font-family: 'HelveticaNeue-Italic';
+  src: url('/fonts/helvetica-neue-5/HelveticaNeueItalic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'HelveticaNeue-BoldItalic';
+  src: url('/fonts/helvetica-neue-5/HelveticaNeueBoldItalic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'HelveticaNeue-Bold';
+  src: url('/fonts/helvetica-neue-5/HelveticaNeueBold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'HelveticaNeue-Black';
+  src: url('/fonts/helvetica-neue-5/HelveticaNeueBlack.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}

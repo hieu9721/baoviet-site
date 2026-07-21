@@ -5,22 +5,48 @@ import type { SiteConfig, TextStyle } from "../types/content";
  * để khỏi chép đi chép lại và khỏi lệch nhau khi chỉnh.
  */
 
-/** Dòng dẫn in đậm, nghiêng, viết hoa — ví dụ "HƯỚNG DẪN TRA CỨU:". */
-const subheadingStyle: TextStyle = {
+/*
+ * Cỡ chữ lấy trực tiếp từ thiết kế mobile (khung Figma rộng 700px).
+ * Quy đổi responsive: hệ số vw ≈ cỡ_thiết_kế / 7 (vì 100vw = 700px ở khung gốc),
+ * `max` = đúng cỡ thiết kế, `min` là sàn cho dễ đọc trên máy nhỏ.
+ * Thiết kế dùng 2 mức: khối hero 16px, còn các đoạn trong section 20px.
+ */
+
+/** HERO — dòng chào in đậm nghiêng hoa (thiết kế: Helvetica Neue Bold Italic 16px). */
+const heroLeadStyle: TextStyle = {
   color: "var(--color-text-primary)",
-  fontFamily: "'Helvetica-BoldOblique', sans-serif",
+  fontFamily: "'HelveticaNeue-BoldItalic', sans-serif",
   fontWeight: 700,
-  fontSize: "clamp(13px, 3.2vw, 18px)",
+  fontSize: "clamp(12px, 2.3vw, 16px)",
   textTransform: "uppercase",
-  lineHeight: 1.35,
+  lineHeight: 1.3,
 };
 
-/** Đoạn giải thích chữ trắng in nghiêng, nhỏ hơn. */
+/** HERO — ghi chú bảo mật in nghiêng (thiết kế: Helvetica Neue Italic 16px). */
+const heroNoteStyle: TextStyle = {
+  color: "var(--color-text-primary)",
+  fontFamily: "'HelveticaNeue-Italic', sans-serif",
+  fontWeight: 400,
+  fontSize: "clamp(12px, 2.3vw, 16px)",
+  lineHeight: 1.5,
+};
+
+/** SECTION — dòng dẫn in đậm nghiêng hoa, ví dụ "HƯỚNG DẪN TRA CỨU:" (thiết kế: Helvetica Neue Bold Italic 20px). */
+const subheadingStyle: TextStyle = {
+  color: "var(--color-text-primary)",
+  fontFamily: "'HelveticaNeue-BoldItalic', sans-serif",
+  fontWeight: 700,
+  fontSize: "clamp(13px, 2.9vw, 20px)",
+  textTransform: "uppercase",
+  lineHeight: 1.3,
+};
+
+/** SECTION — đoạn giải thích in nghiêng (thiết kế: Helvetica Neue Italic 20px). */
 const noteStyle: TextStyle = {
   color: "var(--color-text-primary)",
-  fontFamily: "'Helvetica-Oblique', sans-serif",
+  fontFamily: "'HelveticaNeue-Italic', sans-serif",
   fontWeight: 400,
-  fontSize: "clamp(11px, 2.6vw, 15px)",
+  fontSize: "clamp(13px, 2.9vw, 20px)",
   lineHeight: 1.5,
 };
 
@@ -47,10 +73,10 @@ export const siteConfig: SiteConfig = {
     // #001a8c hơi tối nên lúc ảnh chưa tải sẽ chớp một nền navy sẫm.
     backgroundColor: "#0619CC",
     colors: {
-      // Dải vàng chanh theo thiết kế (tiêu đề section ~#FFFF57, đáy nút ~#FFFF4E).
-      goldLight: "#FEFF9E",
-      gold: "#FFF24C",
-      goldDeep: "#F5E62E",
+      // Dải vàng chanh đúng token thiết kế (gradient tiêu đề/nút #ffffa4 → #ffff4e).
+      goldLight: "#FFFFA4",
+      gold: "#FFFF79",
+      goldDeep: "#FFFF4E",
       textPrimary: "#ffffff",
       textMuted: "#cacaca",
       // Chữ trên nút vàng — navy đậm để tương phản, đúng như thiết kế.
@@ -60,7 +86,10 @@ export const siteConfig: SiteConfig = {
     // Giảm xuống ví dụ '540px' nếu muốn trang luôn giữ dáng mobile.
     contentMaxWidth: "1170px",
     fonts: {
-      body: "'Helvetica', sans-serif",
+      // Chữ thường dùng Helvetica Neue chuẩn (bộ trong public/fonts/helvetica-neue-5).
+      body: "'HelveticaNeue', sans-serif",
+      // Tiêu đề section giữ font điều kiện (condensed) — bộ Neue mới không có bản
+      // condensed nên vẫn dùng HelveticaVn (đậm, hẹp) sát thiết kế nhất.
       heading: "'HelveticaVn', sans-serif",
       title: "'HelveticaNeue-CondensedBlack', 'Arial Narrow', sans-serif",
       button: "'HelveticaVn-bd', sans-serif",
@@ -71,7 +100,8 @@ export const siteConfig: SiteConfig = {
     defaults: {
       title: {
         gradient: true,
-        fontSize: "clamp(17px, 4.3vw, 27px)",
+        // Thiết kế: 32px trên khung 700px → 4.6vw.
+        fontSize: "clamp(18px, 4.6vw, 32px)",
         underline: true,
         // Trong design gạch chân rộng cố định ~27% bề ngang trang, không theo độ dài chữ.
         underlineWidth: "min(27vw, 316px)",
@@ -85,9 +115,10 @@ export const siteConfig: SiteConfig = {
         lineHeight: 1.5,
       },
       button: {
-        fontSize: "clamp(12px, 3vw, 16px)",
-        padding: "10px 26px",
-        borderRadius: "10px",
+        // Thiết kế: chữ 24px, nút cao ~55px → padding dọc ~13px.
+        fontSize: "clamp(14px, 3.4vw, 24px)",
+        padding: "13px 30px",
+        borderRadius: "12px",
         lineHeight: 1.2,
         hoverScale: 1.05,
       },
@@ -117,13 +148,13 @@ export const siteConfig: SiteConfig = {
     paragraphs: [
       {
         text: "Chào mừng Quý Đại biểu đến với không gian tài liệu số của Hội nghị! Kính chúc Quý Lãnh đạo có một kỳ hội nghị thành công rực rỡ, cùng Bảo hiểm Bảo Việt đồng lòng bứt phá, quản trị vững vàng và tăng trưởng bền vững",
-        style: subheadingStyle,
+        style: heroLeadStyle,
       },
       {
         // Ghi chú bảo mật — chữ trắng nghiêng, nhỏ hơn đoạn chào mừng.
         text: `Tài liệu Hội nghị dành riêng cho Lãnh đạo cấp cao Bảo hiểm Bảo Việt.
         Đề nghị bảo mật thông tin và không sao chép, chia sẻ dưới mọi hình thức.`,
-        style: { ...noteStyle, margin: "18px 0 0" },
+        style: { ...heroNoteStyle, margin: "18px 0 0" },
       },
     ],
   },
@@ -138,12 +169,6 @@ export const siteConfig: SiteConfig = {
           src: "/images/baoviet/so-do-chuong-trinh.png",
           alt: "Sơ đồ hội nghị",
           padding: "0 12px",
-        },
-      ],
-      buttons: [
-        {
-          label: "xem chi tiết tại đây",
-          variant: "inline",
           action: { type: "gdocsViewer", url: "/files/ds-dai-bieu.pdf" },
         },
       ],
@@ -252,7 +277,7 @@ export const siteConfig: SiteConfig = {
             type: "link",
             url: "https://bibpix.net/Anh-Sao-hop-luc-ban-cheo-2025",
           },
-          style: {...noteStyle, margin: "16px 0"}
+          style: { ...noteStyle, margin: "16px 0" },
         },
       ],
       // Đưa phần hướng dẫn lên trên ảnh.
@@ -272,9 +297,10 @@ export const siteConfig: SiteConfig = {
     paragraphs: ["Copyright © 2026 TCT Bảo Hiểm Bảo Việt. Tất cả các quyền được bảo hộ."],
     style: {
       color: "var(--color-text-primary)",
-      fontFamily: "'Helvetica', sans-serif",
+      fontFamily: "'HelveticaNeue', sans-serif",
       fontWeight: 400,
-      fontSize: "clamp(10px, 2.2vw, 13px)",
+      // Thiết kế: 16px trên khung 700px → 2.3vw.
+      fontSize: "clamp(11px, 2.3vw, 16px)",
     },
   },
 };
