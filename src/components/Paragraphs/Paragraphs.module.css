@@ -1,0 +1,21 @@
+.block {
+  font-family: 'Helvetica-Bold', sans-serif;
+  font-size: x-small;
+  color: var(--color-text-primary);
+  font-weight: bold;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.paragraph {
+  margin: 0 0 1.2em;
+}
+
+.paragraph:last-child {
+  margin-bottom: 0;
+}
+
+/* Mỗi dòng trong config thành một dòng riêng trên trang. */
+.line {
+  display: block;
+}

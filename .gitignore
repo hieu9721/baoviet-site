@@ -12,3 +12,12 @@ npm-debug.log*
 .idea
 .vscode/*
 !.vscode/extensions.json
+
+# TypeScript incremental build cache
+*.tsbuildinfo
+
+# Thu muc tham chieu thiet ke (khong can cho build)
+design/
+
+# Cau hinh cong cu cuc bo
+.claude/

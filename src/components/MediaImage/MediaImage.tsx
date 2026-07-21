@@ -1,6 +1,11 @@
+import type { KeyboardEvent } from 'react'
+import { useStyleDefaults } from '../../context/StyleDefaults'
 import { createClickHandler } from '../../lib/actions'
+import { fetchPriorityAttr } from '../../lib/dom'
+import { mediaStyleToCss, mergeStyle } from '../../lib/style'
 import type { MediaItem } from '../../types/content'
 import GoldButton from '../GoldButton/GoldButton'
+import Paragraphs from '../Paragraphs/Paragraphs'
 import styles from './MediaImage.module.css'
 
 interface MediaImageProps {
@@ -9,9 +14,14 @@ interface MediaImageProps {
   priority?: boolean
 }
 
-/** Một ảnh trong section — có thể bấm được và/hoặc mang nút nổi bên trên. */
+/** Một ảnh — có thể bấm được, mang nút nổi và/hoặc chú thích bên dưới. */
 export function MediaImage({ item, priority = false }: MediaImageProps) {
-  const { src, alt = '', action, overlayButton, padding, lazy } = item
+  const { src, alt = '', action, overlayButton, style, padding, lazy, caption, captionStyle } = item
+  const defaults = useStyleDefaults('media')
+  // `padding` viết tắt chỉ dùng khi style.padding không có.
+  const resolved = mergeStyle(mergeStyle(defaults, { padding }), style)
+  const css = mediaStyleToCss(resolved)
+
   const onClick = createClickHandler(action)
   const isLazy = lazy ?? !priority
 
@@ -20,15 +30,15 @@ export function MediaImage({ item, priority = false }: MediaImageProps) {
       src={src}
       alt={alt}
       loading={isLazy ? 'lazy' : 'eager'}
-      fetchPriority={priority ? 'high' : undefined}
-      style={padding ? { padding } : undefined}
+      {...fetchPriorityAttr(priority)}
+      style={css}
       className={`${styles.image} ${onClick ? styles.clickable : ''}`.trim()}
       onClick={onClick}
       // Ảnh bấm được cần truy cập được bằng bàn phím.
       {...(onClick && {
         role: 'button',
         tabIndex: 0,
-        onKeyDown: (e: React.KeyboardEvent) => {
+        onKeyDown: (e: KeyboardEvent) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault()
             onClick()
@@ -38,12 +48,21 @@ export function MediaImage({ item, priority = false }: MediaImageProps) {
     />
   )
 
-  if (!overlayButton) return image
+  // Không có gì bọc thêm thì trả thẳng thẻ img.
+  if (!overlayButton && !caption) return image
 
   return (
     <div className={styles.wrapper}>
       {image}
-      <GoldButton config={{ ...overlayButton, variant: 'overlay' }} />
+      {overlayButton && <GoldButton config={{ ...overlayButton, variant: 'overlay' }} />}
+      {caption && (
+        <Paragraphs
+          items={[caption]}
+          style={captionStyle}
+          defaultsKey="caption"
+          className={styles.caption}
+        />
+      )}
     </div>
   )
 }

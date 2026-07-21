@@ -1,6 +1,6 @@
 .button {
   font-family: var(--font-button);
-  background: linear-gradient(to bottom, var(--color-gold-light), var(--color-gold-deep));
+  background: linear-gradient(to bottom, var(--color-gold-deep), var(--color-text-primary), var(--color-gold-deep));
   color: var(--color-button-text);
   font-weight: bold;
   font-size: 11px;
@@ -17,21 +17,22 @@
 }
 
 .button:hover {
-  transform: scale(1.05);
+  transform: scale(var(--hover-scale, 1.05));
 }
 
-/* Nút nổi, căn giữa đáy ảnh. */
+/* Nút nổi, mặc định căn giữa đáy ảnh; đè lại được qua `position` trong config. */
 .overlay {
   position: absolute;
   bottom: 35px;
   left: 50%;
-  transform: translateX(-50%);
   z-index: 30;
   white-space: nowrap;
   font-size: 18px;
+  /* Bù lại translate căn giữa; nếu config đặt `left` khác thì vẫn hoạt động. */
+  transform: translateX(-50%);
 }
 
 .overlay:hover {
-  /* Phải giữ translateX(-50%) khi hover, nếu không nút sẽ nhảy sang phải. */
-  transform: translateX(-50%) scale(1.05);
+  /* Phải giữ translateX(-50%), nếu không nút sẽ nhảy sang phải khi hover. */
+  transform: translateX(-50%) scale(var(--hover-scale, 1.05));
 }

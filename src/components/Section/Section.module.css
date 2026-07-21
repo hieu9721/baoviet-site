@@ -3,10 +3,31 @@
   text-align: center;
 }
 
+/* Chỉ ảnh thứ hai trở đi mới cần đẩy xuống, ảnh đầu vẫn sát tiêu đề. */
+.media + .media {
+  margin-top: var(--media-gap, 0px);
+}
+
+.paragraphs {
+  margin-top: var(--section-gap, 16px);
+}
+
+/* Ngay sau tiêu đề thì bỏ margin-top, nếu không khoảng cách bị cộng dồn
+   với margin-bottom của chính tiêu đề. Tiêu đề tự lo phần cách này. */
+.titleWrap + .paragraphs {
+  margin-top: 0;
+}
+
 .buttons {
-  margin-top: 20px;
+  margin-top: var(--section-gap, 20px);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
+}
+
+.row {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }

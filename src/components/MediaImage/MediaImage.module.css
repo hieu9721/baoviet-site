@@ -11,3 +11,9 @@
 .clickable {
   cursor: pointer;
 }
+
+.caption {
+  margin-top: 8px;
+  color: var(--color-text-muted);
+  font-size: xx-small;
+}

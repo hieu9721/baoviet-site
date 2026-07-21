@@ -1,8 +1,12 @@
 import type { ReactNode } from 'react'
+import { useStyleDefaults } from '../../context/StyleDefaults'
+import { mergeStyle, sectionStyleToCss } from '../../lib/style'
 import type { MediaItem, RevealEffect, SectionConfig } from '../../types/content'
+import Carousel from '../Carousel/Carousel'
 import GoldButton from '../GoldButton/GoldButton'
 import GoldTitle from '../GoldTitle/GoldTitle'
 import MediaImage from '../MediaImage/MediaImage'
+import Paragraphs from '../Paragraphs/Paragraphs'
 import Reveal from '../Reveal/Reveal'
 import ShutterReveal from '../ShutterReveal/ShutterReveal'
 import styles from './Section.module.css'
@@ -40,26 +44,64 @@ function withEffect(
 }
 
 /**
- * Một khối nội dung: tiêu đề + danh sách ảnh + danh sách nút.
- * Toàn bộ hình dạng đến từ `SectionConfig`, không hard-code gì.
+ * Một khối nội dung: tiêu đề + đoạn văn + ảnh + nút.
+ * Toàn bộ nội dung lẫn giao diện đến từ `SectionConfig`, không hard-code gì.
  */
 export function Section({ config, animation }: SectionProps) {
-  const { id, title, media = [], buttons = [], effect = 'shutter' } = config
+  const {
+    id,
+    title,
+    titleStyle,
+    paragraphs = [],
+    paragraphStyle,
+    paragraphsPlacement = 'afterMedia',
+    media = [],
+    layout = 'stack',
+    carousel,
+    buttons = [],
+    buttonsLayout = 'column',
+    effect = 'shutter',
+    style,
+  } = config
+
+  const defaults = useStyleDefaults('section')
+  const css = sectionStyleToCss(mergeStyle(defaults, style))
+
+  const paragraphBlock = paragraphs.length > 0 && (
+    <Reveal once={animation?.once} className={styles.paragraphs}>
+      <Paragraphs items={paragraphs} style={paragraphStyle} />
+    </Reveal>
+  )
 
   return (
-    <section id={id} className={styles.section}>
+    <section id={id} className={styles.section} style={css}>
       {title && (
-        <Reveal once={animation?.once}>
-          <GoldTitle text={title} />
+        <Reveal once={animation?.once} className={styles.titleWrap}>
+          <GoldTitle text={title} style={titleStyle} />
         </Reveal>
       )}
 
-      {media.map((item: MediaItem, i) =>
-        withEffect(item.effect ?? effect, <MediaImage item={item} />, animation, i),
-      )}
+      {paragraphsPlacement === 'afterTitle' && paragraphBlock}
+
+      {layout === 'carousel'
+        ? // Cả dải cuộn dùng chung một hiệu ứng, tránh từng slide tự chạy rời rạc.
+          withEffect(
+            effect,
+            <Carousel items={media} options={carousel} label={title} />,
+            animation,
+            'carousel',
+          )
+        : media.map((item: MediaItem, i) => (
+            // Bọc thêm một lớp để CSS giãn cách được các ảnh kề nhau (--media-gap).
+            <div key={i} className={styles.media}>
+              {withEffect(item.effect ?? effect, <MediaImage item={item} />, animation)}
+            </div>
+          ))}
+
+      {paragraphsPlacement === 'afterMedia' && paragraphBlock}
 
       {buttons.length > 0 && (
-        <div className={styles.buttons}>
+        <div className={`${styles.buttons} ${buttonsLayout === 'row' ? styles.row : ''}`.trim()}>
           {buttons.map((button, i) => (
             <Reveal key={i} once={animation?.once}>
               <GoldButton config={button} />

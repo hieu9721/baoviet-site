@@ -6,16 +6,14 @@
   display: inline-block;
   line-height: 1.4;
   padding-top: 5px;
-  padding-bottom: 15px;
-  margin: 0 0 20px;
+  padding-bottom: var(--underline-gap, 15px);
+  /* Khoảng cách xuống nội dung kế tiếp — theo design là ~3.4% bề ngang trang.
+     Đây là NGUỒN DUY NHẤT tạo khoảng cách sau tiêu đề (xem Section.module.css),
+     nên chỉnh `titleStyle.margin` trong config là kiểm soát được toàn bộ. */
+  margin: 0 0 clamp(12px, 3.4vw, 40px);
   position: relative;
   font-size: larger;
-
-  background: var(--gradient-gold);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  /* Màu dự phòng cho trình duyệt cũ không hỗ trợ background-clip: text. */
+  /* Màu dự phòng cho trình duyệt cũ; gradient do inline style áp vào. */
   color: var(--color-gold);
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
 }
@@ -26,8 +24,11 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 180px;
-  height: 1px;
-  background: linear-gradient(to right, var(--color-gold), var(--color-gold-deep));
+  width: var(--underline-width, 180px);
+  height: var(--underline-height, 1px);
+  background: var(
+    --underline-color,
+    linear-gradient(to right, var(--color-gold), var(--color-gold-deep))
+  );
   border-radius: 2px;
 }

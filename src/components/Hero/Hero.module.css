@@ -19,11 +19,6 @@
 .titleText {
   font-family: var(--font-title);
   font-size: clamp(20px, 4.5vw, 55px);
-  color: var(--color-gold-deep);
-  text-transform: uppercase;
-  font-weight: bold;
-  line-height: 1.2;
-  margin: 0;
   text-shadow:
     0 1px 0 #000,
     0 2px 0 #fff,
@@ -32,26 +27,30 @@
     0 6px 1px rgb(13 13 13 / 50%);
 }
 
-.text {
+.mediaWrap {
+  margin-top: 16px;
+  padding: 0 16px;
+}
+
+.eyebrowWrap,
+.textWrap {
   margin-top: 15px;
   padding: 0 16px;
   text-align: center;
-  color: var(--color-text-primary);
-  font-weight: bold;
-  line-height: 1.1;
 }
 
 .eyebrow {
   font-family: 'Helvetica-Bold', sans-serif;
   font-size: 16px;
+  color: var(--color-text-primary);
+  font-weight: bold;
+  line-height: 1.1;
 }
 
-.paragraph {
-  font-family: 'Helvetica-Bold', sans-serif;
-  font-size: x-small;
-  margin: 0 0 1.2em;
-}
-
-.line {
-  display: block;
+.buttons {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
 }
