@@ -1,0 +1,12 @@
+.reveal {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-100px);
+  transition: all 1s var(--ease-reveal);
+}
+
+.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}

@@ -1,0 +1,74 @@
+@import './fonts.css';
+
+/*
+ * Giá trị mặc định của các biến dưới đây sẽ bị ghi đè lúc chạy
+ * bởi `applyTheme()` (src/lib/theme.ts) dựa trên `siteConfig.theme`.
+ */
+:root {
+  --color-gold-light: #f9fb91;
+  --color-gold: #f9e04c;
+  --color-gold-deep: #fee700;
+  --color-text-primary: #ffffff;
+  --color-text-muted: #cacaca;
+  --color-button-text: #001a8c;
+  --color-background: #001a8c;
+
+  --font-body: 'Helvetica', sans-serif;
+  --font-heading: 'HelveticaVn', sans-serif;
+  --font-title: 'HelveticaNeue-CondensedBlack', 'Arial Narrow', sans-serif;
+  --font-button: 'HelveticaVn-bd', sans-serif;
+
+  --content-max-width: 1170px;
+  --shutter-color: #ffffff;
+
+  --gradient-gold: linear-gradient(
+    to bottom,
+    var(--color-gold-light) 0%,
+    var(--color-gold) 50%,
+    var(--color-gold-deep) 100%
+  );
+
+  --ease-reveal: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-weight: 400;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Tôn trọng thiết lập giảm chuyển động của người dùng. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

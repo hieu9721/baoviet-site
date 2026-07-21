@@ -1,0 +1,81 @@
+/* Font Helvetica cục bộ — file nằm trong public/fonts/helvetica/ */
+
+@font-face {
+  font-family: 'Helvetica';
+  src: url('/fonts/helvetica/Helvetica-01.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica-Bold';
+  src: url('/fonts/helvetica/Helvetica-Bold-02.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica-BoldOblique';
+  src: url('/fonts/helvetica/Helvetica-BoldOblique-04.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica-Light';
+  src: url('/fonts/helvetica/Helvetica-Light-05.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica-LightOblique';
+  src: url('/fonts/helvetica/Helvetica-LightOblique-06.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica-Oblique';
+  src: url('/fonts/helvetica/Helvetica-Oblique-03.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'HelveticaNeue-CondensedBlack';
+  src: url('/fonts/helvetica/HelveticaNeue-CondensedBlack-10.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'HelveticaNeue-CondensedBold';
+  src: url('/fonts/helvetica/HelveticaNeue-CondensedBold-05.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'HelveticaVn';
+  src: url('/fonts/helvetica/HelveticaVn-BdCn.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'HelveticaVn-bd';
+  src: url('/fonts/helvetica/HelveticaVn-Bd.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

@@ -1,0 +1,13 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  display: inline-block;
+}
+
+.image {
+  width: 100%;
+}
+
+.clickable {
+  cursor: pointer;
+}

@@ -1,0 +1,33 @@
+.title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  text-transform: uppercase;
+  /* inline-block để trình duyệt tính lại khung chữ, tránh cắt dấu tiếng Việt. */
+  display: inline-block;
+  line-height: 1.4;
+  padding-top: 5px;
+  padding-bottom: 15px;
+  margin: 0 0 20px;
+  position: relative;
+  font-size: larger;
+
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* Màu dự phòng cho trình duyệt cũ không hỗ trợ background-clip: text. */
+  color: var(--color-gold);
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
+}
+
+.underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 1px;
+  background: linear-gradient(to right, var(--color-gold), var(--color-gold-deep));
+  border-radius: 2px;
+}
