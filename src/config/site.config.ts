@@ -6,10 +6,12 @@ import type { SiteConfig, TextStyle } from "../types/content";
  */
 
 /*
- * Cỡ chữ lấy trực tiếp từ thiết kế mobile (khung Figma rộng 700px).
- * Quy đổi responsive: hệ số vw ≈ cỡ_thiết_kế / 7 (vì 100vw = 700px ở khung gốc),
- * `max` = đúng cỡ thiết kế, `min` là sàn cho dễ đọc trên máy nhỏ.
- * Thiết kế dùng 2 mức: khối hero 16px, còn các đoạn trong section 20px.
+ * Cỡ chữ lấy từ thiết kế mobile (khung Figma rộng 700px) nhưng không viết
+ * clamp() tại đây nữa — bốn token `--fs-*` khai báo một chỗ trong
+ * `src/styles/global.css`, nội suy giữa 360px và 700px. Đổi thang chữ toàn
+ * trang thì sửa token, không phải dò từng style bên dưới.
+ *
+ * Thiết kế dùng hai mức: khối hero 16px, các đoạn trong section 20px.
  */
 
 /** HERO — dòng chào in đậm nghiêng hoa (thiết kế: Helvetica Neue Bold Italic 16px). */
@@ -17,9 +19,9 @@ const heroLeadStyle: TextStyle = {
   color: "var(--color-text-primary)",
   fontFamily: "'HelveticaNeue-BoldItalic', sans-serif",
   fontWeight: 700,
-  fontSize: "clamp(12px, 2.3vw, 16px)",
+  fontSize: "var(--fs-hero)",
   textTransform: "uppercase",
-  lineHeight: 1.3,
+  lineHeight: 1.35,
 };
 
 /** HERO — ghi chú bảo mật in nghiêng (thiết kế: Helvetica Neue Italic 16px). */
@@ -27,8 +29,8 @@ const heroNoteStyle: TextStyle = {
   color: "var(--color-text-primary)",
   fontFamily: "'HelveticaNeue-Italic', sans-serif",
   fontWeight: 400,
-  fontSize: "clamp(12px, 2.3vw, 16px)",
-  lineHeight: 1.5,
+  fontSize: "var(--fs-hero)",
+  lineHeight: 1.55,
 };
 
 /** SECTION — dòng dẫn in đậm nghiêng hoa, ví dụ "HƯỚNG DẪN TRA CỨU:" (thiết kế: Helvetica Neue Bold Italic 20px). */
@@ -36,9 +38,9 @@ const subheadingStyle: TextStyle = {
   color: "var(--color-text-primary)",
   fontFamily: "'HelveticaNeue-BoldItalic', sans-serif",
   fontWeight: 700,
-  fontSize: "clamp(13px, 2.9vw, 20px)",
+  fontSize: "var(--fs-body)",
   textTransform: "uppercase",
-  lineHeight: 1.3,
+  lineHeight: 1.35,
 };
 
 /** SECTION — đoạn giải thích in nghiêng (thiết kế: Helvetica Neue Italic 20px). */
@@ -46,8 +48,8 @@ const noteStyle: TextStyle = {
   color: "var(--color-text-primary)",
   fontFamily: "'HelveticaNeue-Italic', sans-serif",
   fontWeight: 400,
-  fontSize: "clamp(13px, 2.9vw, 20px)",
-  lineHeight: 1.5,
+  fontSize: "var(--fs-body)",
+  lineHeight: 1.55,
 };
 
 /**
@@ -100,8 +102,7 @@ export const siteConfig: SiteConfig = {
     defaults: {
       title: {
         gradient: true,
-        // Thiết kế: 32px trên khung 700px → 4.6vw.
-        fontSize: "clamp(18px, 4.6vw, 32px)",
+        fontSize: "var(--fs-title)",
         underline: true,
         // Trong design gạch chân rộng cố định ~27% bề ngang trang, không theo độ dài chữ.
         underlineWidth: "min(27vw, 316px)",
@@ -116,7 +117,7 @@ export const siteConfig: SiteConfig = {
       },
       button: {
         // Thiết kế: chữ 24px, nút cao ~55px → padding dọc ~13px.
-        fontSize: "clamp(14px, 3.4vw, 24px)",
+        fontSize: "var(--fs-button)",
         padding: "13px 30px",
         borderRadius: "12px",
         lineHeight: 1.2,
@@ -147,12 +148,12 @@ export const siteConfig: SiteConfig = {
     ],
     paragraphs: [
       {
-        text: "Chào mừng Quý Đại biểu đến với không gian tài liệu số của Hội nghị! Kính chúc Quý Lãnh đạo có một kỳ hội nghị thành công rực rỡ, cùng Bảo hiểm Bảo Việt đồng lòng bứt phá, quản trị vững vàng và tăng trưởng bền vững",
+        text: "Chào mừng Quý Đại biểu đến với không gian tài liệu số của Hội nghị! \nKính chúc Quý Lãnh đạo có một kỳ hội nghị thành công rực rỡ, cùng Bảo hiểm Bảo Việt đồng lòng bứt phá, quản trị vững vàng và tăng trưởng bền vững",
         style: heroLeadStyle,
       },
       {
         // Ghi chú bảo mật — chữ trắng nghiêng, nhỏ hơn đoạn chào mừng.
-        text: `Tài liệu Hội nghị dành riêng cho Lãnh đạo cấp cao Bảo hiểm Bảo Việt.
+        text: `Tài liệu Hội nghị dành riêng cho Lãnh đạo cấp cao Bảo hiểm Bảo Việt. 
         Đề nghị bảo mật thông tin và không sao chép, chia sẻ dưới mọi hình thức.`,
         style: { ...heroNoteStyle, margin: "18px 0 0" },
       },
@@ -299,8 +300,8 @@ export const siteConfig: SiteConfig = {
       color: "var(--color-text-primary)",
       fontFamily: "'HelveticaNeue', sans-serif",
       fontWeight: 400,
-      // Thiết kế: 16px trên khung 700px → 2.3vw.
-      fontSize: "clamp(11px, 2.3vw, 16px)",
+      // Thiết kế 16px — cùng mức với chữ hero.
+      fontSize: "var(--fs-hero)",
     },
   },
 };

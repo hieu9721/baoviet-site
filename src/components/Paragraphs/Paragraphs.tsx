@@ -32,12 +32,15 @@ export function Paragraphs({
         const own = typeof item === 'string' ? undefined : item.style
         // Đoạn có style riêng thì gộp đè lên style của cả khối.
         const resolved = own ? mergeStyle(blockStyle, own) : undefined
-        const preserve = (resolved ?? blockStyle)?.preserveLineBreaks ?? true
+        const preserve = (resolved ?? blockStyle)?.preserveLineBreaks ?? 'auto'
+        // 'auto' vẫn tách dòng, nhưng CSS sẽ nối lại khi màn hình hẹp.
+        const lineClass =
+          preserve === true ? styles.line : preserve === 'auto' ? styles.lineAuto : undefined
 
         return (
           <p key={i} className={styles.paragraph} style={own ? textStyleToCss(resolved) : undefined}>
             {splitLines(text, preserve).map((line, j) => (
-              <span key={j} className={preserve ? styles.line : undefined}>
+              <span key={j} className={lineClass}>
                 {line}
               </span>
             ))}

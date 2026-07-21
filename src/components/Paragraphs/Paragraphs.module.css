@@ -1,21 +1,49 @@
 .block {
-  font-family: 'Helvetica-Bold', sans-serif;
-  font-size: x-small;
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
   color: var(--color-text-primary);
-  font-weight: bold;
-  line-height: 1.4;
+  font-weight: 400;
+  line-height: 1.5;
   text-align: center;
+  /* Giới hạn ~65 ký tự mỗi dòng; căn giữa bằng margin auto. */
+  max-width: var(--measure);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .paragraph {
   margin: 0 0 1.2em;
+  /* Dàn lại các dòng cuối để không còn một chữ đứng lẻ. */
+  text-wrap: pretty;
 }
 
 .paragraph:last-child {
   margin-bottom: 0;
 }
 
-/* Mỗi dòng trong config thành một dòng riêng trên trang. */
+/* Luôn ngắt đúng chỗ đã viết trong config (preserveLineBreaks: true). */
 .line {
   display: block;
+}
+
+/*
+ * preserveLineBreaks: 'auto' — mặc định.
+ * Màn hình rộng: giữ ngắt dòng như thiết kế.
+ * Màn hình hẹp: nối các dòng lại thành một đoạn liền để chữ tự chảy,
+ * nếu không mỗi dòng cứng sẽ wrap tiếp và đẻ ra chữ mồ côi.
+ */
+.lineAuto {
+  display: block;
+}
+
+@media (max-width: 699px) {
+  .lineAuto {
+    display: inline;
+  }
+
+  /* Nối hai dòng thì phải chèn lại khoảng trắng đã mất khi tách chuỗi. */
+  .lineAuto:not(:last-child)::after {
+    content: ' ';
+    white-space: pre;
+  }
 }

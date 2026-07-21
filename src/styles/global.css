@@ -21,6 +21,35 @@
   --content-max-width: 1170px;
   --shutter-color: #ffffff;
 
+  /* ---------------------------------------------------------------- *
+   * Thang chữ fluid
+   *
+   * Nội suy tuyến tính giữa 360px (máy nhỏ) và 700px (khung thiết kế):
+   * đúng cỡ thiết kế khi màn hình rộng 700px trở lên, và co xuống một
+   * sàn dễ đọc ở máy nhỏ. Không dùng `Nvw` trần vì ở 390px giá trị đó
+   * rơi thẳng xuống đáy clamp, làm chữ to hơn tỉ lệ thiết kế nên câu bị
+   * ngắt dòng sớm và lởm chởm.
+   *
+   * Công thức: clamp(sàn, giao_điểm + hệ_số·vw, cỡ_thiết_kế)
+   * ---------------------------------------------------------------- */
+
+  /* 16px ở khung 700px — chữ trong khối hero */
+  --fs-hero: clamp(13.5px, 10.85px + 0.74vw, 16px);
+  /* 20px — chữ đoạn văn trong các section */
+  --fs-body: clamp(15px, 9.71px + 1.47vw, 20px);
+  /* 32px — tiêu đề section */
+  --fs-title: clamp(20px, 7.29px + 3.53vw, 32px);
+  /* 24px — chữ trên nút */
+  --fs-button: clamp(15px, 5.47px + 2.65vw, 24px);
+
+  /* Bề ngang tối đa của một dòng chữ (~65 ký tự) để câu không kéo dài
+     hết 1170px trên desktop rồi ngắt ở chỗ khó đọc. */
+  --measure: 64ch;
+
+  /* Dưới ngưỡng này thì bỏ các ngắt dòng cứng viết trong config, vì
+     chúng được canh theo khung thiết kế 700px. */
+  --design-frame: 700px;
+
   --gradient-gold: linear-gradient(
     to bottom,
     var(--color-gold-light) 0%,

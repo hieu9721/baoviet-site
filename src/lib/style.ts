@@ -160,10 +160,13 @@ export function sectionStyleToCss(style?: SectionStyle): StyleWithVars {
  * Tách chuỗi nhiều dòng thành từng dòng đã cắt khoảng trắng thừa.
  * Cần thiết vì template literal trong config thường có thụt lề.
  */
-export function splitLines(text: string, preserve = true): string[] {
-  if (!preserve) return [text.split('\n').map((l) => l.trim()).join(' ')]
-  return text
+export function splitLines(text: string, preserve: boolean | 'auto' = 'auto'): string[] {
+  const lines = text
     .split('\n')
     .map((line) => line.trim())
     .filter((line) => line.length > 0)
+
+  // `false` gộp thành một dòng duy nhất; `true` và `'auto'` giữ nguyên các dòng
+  // rồi để CSS quyết định có xuống dòng thật hay không.
+  return preserve === false ? [lines.join(' ')] : lines
 }

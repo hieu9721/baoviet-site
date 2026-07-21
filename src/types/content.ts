@@ -31,8 +31,18 @@ export interface TextStyle {
   margin?: string
   padding?: string
   maxWidth?: string
-  /** Giữ ngắt dòng theo đúng chỗ xuống dòng trong config. Mặc định true. */
-  preserveLineBreaks?: boolean
+  /**
+   * Xử lý chỗ xuống dòng viết trong config:
+   * - `'auto'` (mặc định) — giữ ngắt dòng khi màn hình đủ rộng (≥ khung thiết
+   *   kế 700px), còn màn hình hẹp thì nối lại cho chữ tự chảy. Tránh cảnh một
+   *   dòng cứng lại wrap tiếp thành dòng dài kèm chữ mồ côi.
+   * - `true` — luôn ngắt đúng chỗ đã viết.
+   * - `false` — bỏ hết ngắt dòng, để chữ tự chảy theo bề ngang.
+   *
+   * Riêng tiêu đề (`GoldTitle`) coi `'auto'` như `true`, vì tiêu đề ngắn nên
+   * ngắt dòng thủ công gần như luôn vừa.
+   */
+  preserveLineBreaks?: boolean | 'auto'
 }
 
 /** Style riêng cho tiêu đề, thêm phần gạch chân gradient. */
