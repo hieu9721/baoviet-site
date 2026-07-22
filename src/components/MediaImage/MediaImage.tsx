@@ -30,6 +30,9 @@ export function MediaImage({ item, priority = false }: MediaImageProps) {
       src={src}
       alt={alt}
       loading={isLazy ? 'lazy' : 'eager'}
+      // Ảnh nặng (nhiều tấm 2–3 MB): giải mã ngoài luồng chính để không kẹt cuộn.
+      // Ảnh đầu trang giải mã đồng bộ cho kịp lần vẽ đầu (LCP).
+      decoding={priority ? 'sync' : 'async'}
       {...fetchPriorityAttr(priority)}
       style={css}
       className={`${styles.image} ${onClick ? styles.clickable : ''}`.trim()}

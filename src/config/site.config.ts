@@ -136,13 +136,13 @@ export const siteConfig: SiteConfig = {
   },
 
   hero: {
-    bannerImage: "/images/baoviet/banner-baoviet.png",
+    bannerImage: "/images/baoviet/banner-baoviet.webp",
     // eyebrow: "Chào mừng Quý Đại biểu đến với hội nghị",
-    titleImage: "/images/baoviet/title-baoviet.png",
+    titleImage: "/images/baoviet/title-baoviet.webp",
     // Dải huy hiệu "TƯ DUY MỞ / QUẢN TRỊ VỮNG / TĂNG TRƯỞNG BỀN" dưới tiêu đề.
     media: [
       {
-        src: "/images/baoviet/group-button-baoviet.png",
+        src: "/images/baoviet/group-button-baoviet.webp",
         alt: "Tư duy mở · Quản trị vững · Tăng trưởng bền",
       },
     ],
@@ -167,7 +167,7 @@ export const siteConfig: SiteConfig = {
       effect: "shutter",
       media: [
         {
-          src: "/images/baoviet/so-do-chuong-trinh.png",
+          src: "/images/baoviet/so-do-chuong-trinh.webp",
           alt: "Sơ đồ hội nghị",
           padding: "0 12px",
           action: { type: "gdocsViewer", url: "/files/ds-dai-bieu.pdf" },
@@ -181,8 +181,8 @@ export const siteConfig: SiteConfig = {
       // Tách hai bảng phiên họp sáng / chiều ra cho dễ đọc.
       style: { mediaGap: "16px" },
       media: [
-        { src: "/images/baoviet/phien-hop-sang.png", alt: "Phiên họp sáng" },
-        { src: "/images/baoviet/phien-hop-chieu.png", alt: "Phiên họp chiều" },
+        { src: "/images/baoviet/phien-hop-sang.webp", alt: "Phiên họp sáng" },
+        { src: "/images/baoviet/phien-hop-chieu.webp", alt: "Phiên họp chiều" },
       ],
     },
     {
@@ -198,7 +198,7 @@ export const siteConfig: SiteConfig = {
       },
       media: [
         {
-          src: "/images/baoviet/thong-diep-kd-2026.png",
+          src: "/images/baoviet/thong-diep-kd-2026.webp",
           alt: "Kết quả 6 tháng đầu năm 2026",
           action: {
             type: "link",
@@ -206,7 +206,7 @@ export const siteConfig: SiteConfig = {
           },
         },
         {
-          src: "/images/baoviet/thong-diep-kd-2026-2.png",
+          src: "/images/baoviet/thong-diep-kd-2026-2.webp",
           alt: "Mục tiêu kinh doanh 6 tháng cuối năm 2026",
           action: {
             type: "link",
@@ -221,7 +221,7 @@ export const siteConfig: SiteConfig = {
       effect: "shutter",
       media: [
         {
-          src: "/images/baoviet/diem-sang-tieu-bieu.png",
+          src: "/images/baoviet/diem-sang-tieu-bieu.webp",
           alt: "Điểm sáng tiêu biểu",
         },
       ],
@@ -232,7 +232,7 @@ export const siteConfig: SiteConfig = {
       effect: "shutter",
       media: [
         {
-          src: "/images/baoviet/giai-thuong.png",
+          src: "/images/baoviet/giai-thuong.webp",
           alt: "các giải thưởng",
         },
       ],
@@ -243,7 +243,7 @@ export const siteConfig: SiteConfig = {
       effect: "shutter",
       media: [
         {
-          src: "/images/baoviet/tap-chi-nha-lanh-dao.png",
+          src: "/images/baoviet/tap-chi-nha-lanh-dao.webp",
           alt: "Tạp chí nhà lãnh đạo",
         },
       ],
@@ -271,7 +271,7 @@ export const siteConfig: SiteConfig = {
       effect: "shutter",
       media: [
         {
-          src: "/images/baoviet/anh-hoi-nghi.png",
+          src: "/images/baoviet/anh-hoi-nghi.webp",
           alt: "Ảnh hội nghị kinh doanh",
           // Nút nổi đè lên đáy ảnh, đúng như design.
           action: {
