@@ -170,7 +170,7 @@ export const siteConfig: SiteConfig = {
           src: "/images/baoviet/so-do-chuong-trinh.png",
           alt: "Sơ đồ hội nghị",
           padding: "0 12px",
-          action: { type: "gdocsViewer", url: "/files/ds-dai-bieu.pdf" },
+          // action: { type: "gdocsViewer", url: "/files/ds-dai-bieu.pdf" },
         },
       ],
     },
@@ -200,18 +200,18 @@ export const siteConfig: SiteConfig = {
         {
           src: "/images/baoviet/thong-diep-kd-2026.png",
           alt: "Kết quả 6 tháng đầu năm 2026",
-          action: {
-            type: "link",
-            url: "https://drive.google.com/file/d/1POSuu3dJ7RDHB8UzUvBPBRwhbRTFgYnO/view?usp=sharing",
-          },
+          // action: {
+          //   type: "link",
+          //   url: "https://drive.google.com/file/d/1POSuu3dJ7RDHB8UzUvBPBRwhbRTFgYnO/view?usp=sharing",
+          // },
         },
         {
           src: "/images/baoviet/thong-diep-kd-2026-2.png",
           alt: "Mục tiêu kinh doanh 6 tháng cuối năm 2026",
-          action: {
-            type: "link",
-            url: "https://drive.google.com/file/d/1POSuu3dJ7RDHB8UzUvBPBRwhbRTFgYnO/view?usp=sharing",
-          },
+          // action: {
+          //   type: "link",
+          //   url: "https://drive.google.com/file/d/1POSuu3dJ7RDHB8UzUvBPBRwhbRTFgYnO/view?usp=sharing",
+          // },
         },
       ],
     },
