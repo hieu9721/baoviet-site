@@ -14,25 +14,6 @@ import type { SiteConfig, TextStyle } from "../types/content";
  * Thiết kế dùng hai mức: khối hero 16px, các đoạn trong section 20px.
  */
 
-/** HERO — dòng chào in đậm nghiêng hoa (thiết kế: Helvetica Neue Bold Italic 16px). */
-const heroLeadStyle: TextStyle = {
-  color: "var(--color-text-primary)",
-  fontFamily: "'HelveticaNeue-BoldItalic', sans-serif",
-  fontWeight: 700,
-  fontSize: "var(--fs-hero)",
-  textTransform: "uppercase",
-  lineHeight: 1.35,
-};
-
-/** HERO — ghi chú bảo mật in nghiêng (thiết kế: Helvetica Neue Italic 16px). */
-const heroNoteStyle: TextStyle = {
-  color: "var(--color-text-primary)",
-  fontFamily: "'HelveticaNeue-Italic', sans-serif",
-  fontWeight: 400,
-  fontSize: "var(--fs-hero)",
-  lineHeight: 1.55,
-};
-
 /** SECTION — dòng dẫn in đậm nghiêng hoa, ví dụ "HƯỚNG DẪN TRA CỨU:" (thiết kế: Helvetica Neue Bold Italic 20px). */
 const subheadingStyle: TextStyle = {
   color: "var(--color-text-primary)",
@@ -139,23 +120,16 @@ export const siteConfig: SiteConfig = {
     bannerImage: "/images/baoviet/banner-baoviet.webp",
     // eyebrow: "Chào mừng Quý Đại biểu đến với hội nghị",
     titleImage: "/images/baoviet/title-baoviet.webp",
-    // Dải huy hiệu "TƯ DUY MỞ / QUẢN TRỊ VỮNG / TĂNG TRƯỞNG BỀN" dưới tiêu đề.
+    // Dải huy hiệu "TƯ DUY MỞ / QUẢN TRỊ VỮNG / TĂNG TRƯỞNG BỀN" dưới tiêu đề,
+    // rồi đến ảnh chào mừng + ghi chú bảo mật (title.png thay cho cụm chữ cũ).
     media: [
       {
         src: "/images/baoviet/group-button-baoviet.webp",
         alt: "Tư duy mở · Quản trị vững · Tăng trưởng bền",
       },
-    ],
-    paragraphs: [
       {
-        text: "Chào mừng Quý Đại biểu đến với không gian tài liệu số của Hội nghị! \nKính chúc Quý Lãnh đạo có một kỳ hội nghị thành công rực rỡ, cùng Bảo hiểm Bảo Việt đồng lòng bứt phá, quản trị vững vàng và tăng trưởng bền vững",
-        style: heroLeadStyle,
-      },
-      {
-        // Ghi chú bảo mật — chữ trắng nghiêng, nhỏ hơn đoạn chào mừng.
-        text: `Tài liệu Hội nghị dành riêng cho Lãnh đạo cấp cao Bảo hiểm Bảo Việt. 
-        Đề nghị bảo mật thông tin và không sao chép, chia sẻ dưới mọi hình thức.`,
-        style: { ...heroNoteStyle, margin: "18px 0 0" },
+        src: "/images/baoviet/title.png",
+        alt: "Chào mừng Quý Đại biểu đến với không gian tài liệu số của Hội nghị. Tài liệu dành riêng cho Lãnh đạo cấp cao Bảo hiểm Bảo Việt, đề nghị bảo mật thông tin.",
       },
     ],
   },
