@@ -14,16 +14,6 @@ import type { SiteConfig, TextStyle } from "../types/content";
  * Thiết kế dùng hai mức: khối hero 16px, các đoạn trong section 20px.
  */
 
-/** HERO — dòng chào in đậm nghiêng hoa (thiết kế: Helvetica Neue Bold Italic 16px). */
-const heroLeadStyle: TextStyle = {
-  color: "var(--color-text-primary)",
-  fontFamily: "'HelveticaNeue-BoldItalic', sans-serif",
-  fontWeight: 700,
-  fontSize: "var(--fs-hero)",
-  textTransform: "uppercase",
-  lineHeight: 1.35,
-};
-
 /** HERO — ghi chú bảo mật in nghiêng (thiết kế: Helvetica Neue Italic 16px). */
 const heroNoteStyle: TextStyle = {
   color: "var(--color-text-primary)",
@@ -138,7 +128,7 @@ export const siteConfig: SiteConfig = {
   hero: {
     bannerImage: "/images/baoviet/banner-baoviet.webp",
     // eyebrow: "Chào mừng Quý Đại biểu đến với hội nghị",
-    titleImage: "/images/baoviet/title-baoviet.webp",
+    titleImage: "/images/baoviet/title.png",
     // Dải huy hiệu "TƯ DUY MỞ / QUẢN TRỊ VỮNG / TĂNG TRƯỞNG BỀN" dưới tiêu đề.
     media: [
       {
@@ -147,10 +137,6 @@ export const siteConfig: SiteConfig = {
       },
     ],
     paragraphs: [
-      {
-        text: "Chào mừng Quý Đại biểu đến với không gian tài liệu số của Hội nghị! \nKính chúc Quý Lãnh đạo có một kỳ hội nghị thành công rực rỡ, cùng Bảo hiểm Bảo Việt đồng lòng bứt phá, quản trị vững vàng và tăng trưởng bền vững",
-        style: heroLeadStyle,
-      },
       {
         // Ghi chú bảo mật — chữ trắng nghiêng, nhỏ hơn đoạn chào mừng.
         text: `Tài liệu Hội nghị dành riêng cho Lãnh đạo cấp cao Bảo hiểm Bảo Việt. 
