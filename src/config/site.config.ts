@@ -269,7 +269,8 @@ export const siteConfig: SiteConfig = {
   ],
 
   footer: {
-    paragraphs: ["Copyright © 2026 TCT Bảo Hiểm Bảo Việt. Tất cả các quyền được bảo hộ."],
+    // Dùng non-breaking space ( ) để "Copyright © 2026 TCT Bảo Hiểm Bảo Việt" không bị cắt dòng.
+    paragraphs: ["Copyright © 2026 TCT Bảo Hiểm Bảo Việt. Tất cả các quyền được bảo hộ."],
     style: {
       color: "var(--color-text-primary)",
       fontFamily: "'HelveticaNeue', sans-serif",
