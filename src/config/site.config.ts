@@ -144,7 +144,7 @@ export const siteConfig: SiteConfig = {
           src: "/images/baoviet/so-do-chuong-trinh.png",
           alt: "Sơ đồ hội nghị",
           padding: "0 12px",
-          // action: { type: "gdocsViewer", url: "/files/ds-dai-bieu.pdf" },
+          action: { type: "link", url: " https://drive.google.com/file/d/1zTLwApvQGJZFJnOtjcdI8_v213nAl0Ur/view?usp=sharing" },
         },
       ],
     },
