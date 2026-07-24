@@ -43,7 +43,7 @@ const noteStyle: TextStyle = {
  */
 export const siteConfig: SiteConfig = {
   seo: {
-    title: "HỘI NGHỊ SƠ KẾT VÀ TRIỂN KHAI NHIỆM VỤ KINH DOANH 6 THÁNG CUỐI NĂM 2026",
+    title: "BHBV - Lễ Sơ Kết 2026",
     description:
       "Không gian tài liệu số của Hội nghị sơ kết và triển khai nhiệm vụ kinh doanh 6 tháng cuối năm 2026 — Bảo hiểm Bảo Việt.",
     favicon: "/images/favicon.png",
