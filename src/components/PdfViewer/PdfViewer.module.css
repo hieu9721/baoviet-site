@@ -24,9 +24,10 @@
 /* Dải nền bao quanh thanh nổi. */
 .band {
   flex: none;
+  /* Không dùng env(safe-area-inset-*): thẻ viewport của trang không đặt
+     `viewport-fit=cover` nên nội dung vốn đã nằm trong vùng an toàn. Webview
+     (Zalo) vẫn trả chiều cao thanh trạng thái ~37px, làm header phồng lên. */
   padding: 12px 14px;
-  /* Chừa vùng tai thỏ / thanh trạng thái trên iOS. */
-  padding-top: max(12px, env(safe-area-inset-top));
   background: var(--pdf-band);
 }
 
@@ -152,7 +153,6 @@
      trang — nếu không sẽ dư ra một thanh cuộn ngang. */
   scrollbar-gutter: stable;
   padding: 12px;
-  padding-bottom: max(12px, env(safe-area-inset-bottom));
   -webkit-overflow-scrolling: touch;
 }
 
@@ -193,7 +193,6 @@
 @media (width <= 480px) {
   .band {
     padding: 10px;
-    padding-top: max(10px, env(safe-area-inset-top));
   }
 
   .bar {
