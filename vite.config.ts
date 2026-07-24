@@ -12,6 +12,11 @@ export default defineConfig({
   },
   // Đổi thành '/ten-thu-muc/' nếu deploy vào sub-path
   base: '/',
+  // Worker của pdf.js được khởi tạo với `type: 'module'` (xem PdfViewer),
+  // nên Vite phải xuất worker ở dạng ES module thay vì 'iife' mặc định.
+  worker: {
+    format: 'es',
+  },
   server: {
     port: 5173,
     open: true,

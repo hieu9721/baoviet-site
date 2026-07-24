@@ -144,7 +144,7 @@ export const siteConfig: SiteConfig = {
           src: "/images/baoviet/so-do-chuong-trinh.png",
           alt: "Sơ đồ hội nghị",
           padding: "0 12px",
-          action: { type: "pdf", url: "/files/so-do.pdf" },
+          action: { type: "pdfViewer", url: "/files/so-do.pdf", title: "Sơ đồ hội nghị" },
         },
       ],
     },

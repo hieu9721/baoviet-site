@@ -1,0 +1,236 @@
+/*
+ * Header của trình xem PDF cố tình dùng bảng màu trung tính (slate) thay cho
+ * tông xanh/vàng của site: đây là thanh công cụ, không phải nội dung sự kiện.
+ * Các giá trị này không có trong token chung nên khai báo cục bộ ở đây.
+ */
+.overlay {
+  --pdf-surface: #fff;
+  --pdf-band: #f4f6fa;
+  --pdf-ink: #0f172a;
+  --pdf-ink-hover: #1e293b;
+  --pdf-icon: #475569;
+  --pdf-track: #f1f5f9;
+
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  background: #1c1c1c;
+  /* Helvetica cục bộ của dự án — không có Plus Jakarta Sans trong repo. */
+  font-family: var(--font-body, sans-serif);
+}
+
+/* Dải nền bao quanh thanh nổi. */
+.band {
+  flex: none;
+  padding: 12px 14px;
+  /* Chừa vùng tai thỏ / thanh trạng thái trên iOS. */
+  padding-top: max(12px, env(safe-area-inset-top));
+  background: var(--pdf-band);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 52px;
+  padding: 0 8px 0 6px;
+  border-radius: 13px;
+  background: var(--pdf-surface);
+  box-shadow:
+    0 1px 2px rgb(15 23 42 / 6%),
+    0 6px 16px -10px rgb(15 23 42 / 20%);
+}
+
+/* --- Nút quay lại --- */
+
+.back {
+  display: inline-flex;
+  flex: none;
+  gap: 6px;
+  align-items: center;
+  height: 36px;
+  padding: 0 12px 0 9px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--pdf-ink);
+  color: #fff;
+  /* Face đậm riêng, tránh trình duyệt tự làm giả nét đậm cho Helvetica. */
+  font-family: 'Helvetica-Bold', var(--font-body, sans-serif);
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.back:hover {
+  background: var(--pdf-ink-hover);
+}
+
+.back:focus-visible,
+.zoom button:focus-visible {
+  outline: 2px solid var(--pdf-ink);
+  outline-offset: 2px;
+}
+
+.icon {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 2.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* --- Tiêu đề --- */
+
+.title {
+  flex: 1;
+  overflow: hidden;
+  color: var(--pdf-ink);
+  font-family: 'Helvetica-Bold', var(--font-body, sans-serif);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* --- Cụm phóng to / thu nhỏ --- */
+
+.zoom {
+  display: flex;
+  flex: none;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 9px;
+  background: var(--pdf-track);
+}
+
+.zoom button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--pdf-icon);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.zoom button:hover:not(:disabled) {
+  background: var(--pdf-surface);
+}
+
+.zoom button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* Giữ chỗ cho cụm zoom bị ẩn ở mobile, để tiêu đề không lệch. */
+.spacer {
+  display: none;
+  flex: none;
+  width: 34px;
+}
+
+/* --- Vùng nội dung PDF (giữ nguyên) --- */
+
+.scroll {
+  flex: 1;
+  overflow: auto;
+  /* Giữ chỗ thanh cuộn dọc để bề rộng lúc đo canvas không đổi sau khi thêm
+     trang — nếu không sẽ dư ra một thanh cuộn ngang. */
+  scrollbar-gutter: stable;
+  padding: 12px;
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
+  -webkit-overflow-scrolling: touch;
+}
+
+.pages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  /* Khi phóng to quá bề ngang, cho phép cuộn ngang thay vì bóp trang lại. */
+  width: fit-content;
+  min-width: 100%;
+  margin: 0 auto;
+}
+
+.page {
+  height: auto;
+  max-width: none;
+  background: #fff;
+  box-shadow: 0 2px 14px rgb(0 0 0 / 40%);
+}
+
+.notice {
+  padding: 32px 16px;
+  color: var(--color-text-muted, #cacaca);
+  font-family: var(--font-body, sans-serif);
+  text-align: center;
+}
+
+.notice a {
+  color: var(--color-gold, #f9e04c);
+}
+
+/* ------------------------------------------------------------------ *
+ * Mobile: nút quay lại rút về icon, ẩn cụm zoom (vẫn pinch được vì
+ * thẻ viewport của trang không khoá user-scalable).
+ * ------------------------------------------------------------------ */
+
+@media (width <= 480px) {
+  .band {
+    padding: 10px;
+    padding-top: max(10px, env(safe-area-inset-top));
+  }
+
+  .bar {
+    gap: 8px;
+    height: 46px;
+    padding: 0 6px;
+    border-radius: 12px;
+  }
+
+  .back {
+    position: relative;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+  }
+
+  /* Vùng chạm 44px theo chuẩn tối thiểu, không phình kích thước nhìn thấy. */
+  .back::after {
+    content: '';
+    position: absolute;
+    inset: -5px;
+  }
+
+  .backLabel {
+    display: none;
+  }
+
+  .title {
+    font-size: 14px;
+  }
+
+  .zoom {
+    display: none;
+  }
+
+  .spacer {
+    display: block;
+  }
+}

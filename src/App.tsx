@@ -3,6 +3,7 @@ import styles from './App.module.css'
 import FixedBackground from './components/FixedBackground/FixedBackground'
 import Footer from './components/Footer/Footer'
 import Hero from './components/Hero/Hero'
+import PdfViewer from './components/PdfViewer/PdfViewer'
 import Section from './components/Section/Section'
 import defaultConfig from './config/site.config'
 import { StyleDefaultsProvider } from './context/StyleDefaults'
@@ -43,6 +44,8 @@ export function App({ config = defaultConfig }: AppProps) {
 
         {footer && <Footer config={footer} />}
       </main>
+
+      <PdfViewer />
     </StyleDefaultsProvider>
   )
 }

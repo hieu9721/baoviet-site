@@ -127,6 +127,8 @@ export type Action =
   | { type: 'link'; url: string; newTab?: boolean }
   /** Mở file PDF trực tiếp (đường dẫn trong /public hoặc URL tuyệt đối). */
   | { type: 'pdf'; url: string; newTab?: boolean }
+  /** Mở PDF ngay trong trang bằng lớp phủ có nút quay lại. */
+  | { type: 'pdfViewer'; url: string; title?: string }
   /** Mở PDF qua Google Docs Viewer. */
   | { type: 'gdocsViewer'; url: string }
   /** Cuộn mượt tới một section theo `id`. */
